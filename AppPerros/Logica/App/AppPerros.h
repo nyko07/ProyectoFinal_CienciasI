@@ -8,6 +8,18 @@
 
 class AppPerros {
 public: 
+
+/**
+	 * Memoria Principal 6
+	 * @param n
+	 */
+Lista <Clientes> clienteMasPerros(int n);
+
+/**
+	 * Memoria Principal 9
+	 * @param n
+	 */
+void getPerrosCumple(int  n);
     
 /**
  * Consultas 1

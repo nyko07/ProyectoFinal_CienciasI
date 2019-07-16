@@ -4,34 +4,28 @@
 
 
 #include "Sucursal.h"
+#include "../Persona/Cliente.h"
+#include "Perro.h"
+#include "../Utilidades/lista.h"
 
 /**
  * Sucursal implementation
  */
 
 
-/**
- * Memoria Principal 6
- * @param n
- * @return Lista <Clientes>
- */
-Lista <Clientes> Sucursal::clienteMasPerros(int n) {
-    return null;
-}
+
 
 /**
  * Memoria Principal 7
  * @return Lista <Perros>
  */
 Lista <Perros> Sucursal::getPerrosSucursales() {
-    return null;
+	Lista<Perro> perros = Lista<Perro>();
+	for(int i=1;i<=clientes.getTam();i++){
+		for(int j=1;j<=clientes.buscar(i).getPerros().getTam();j++){			
+			clientes.insertar_nodo(perros.getTam()+1,clientes.buscar(i).getPerros().buscar(j));
+		}
+	}    
+    return perros;
 }
 
-/**
- * Memoria Principal 9
- * @param n
- * @return void
- */
-void Sucursal::getPerrosCumple(int  n) {
-    return;
-}

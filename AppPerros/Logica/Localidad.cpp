@@ -20,7 +20,14 @@
  */
 Lista <Paseador> Localidad::getPaseadores() {
 	
-    return null;
+	Lista<Paseador> paseadores = Lista<Paseador>();
+	for(int i=1;i<=sucursales.getTam();i++){
+		for(int j=1;j<=sucursales.buscar(i).getPaseadores().getTam();j++){			
+			paseadores.insertar_nodo(paseadores.getTam()+1,sucursales.buscar(i).getPaseadores().buscar(j));
+		}
+	}
+    
+    return paseadores;
 }
 
 /**
@@ -28,7 +35,14 @@ Lista <Paseador> Localidad::getPaseadores() {
  * @return Lista <Cliente>
  */
 Lista <Cliente> Localidad::getClientes() {
-    return null;
+    Lista<Cliente> clientes = Lista<Cliente>();
+	for(int i=1;i<=sucursales.getTam();i++){
+		for(int j=1;j<=sucursales.buscar(i).getClientes().getTam();j++){			
+			clientes.insertar_nodo(clientes.getTam()+1,sucursales.buscar(i).getClientes().buscar(j));
+		}
+	}
+    
+    return clientes;
 }
 
 /**
@@ -36,5 +50,12 @@ Lista <Cliente> Localidad::getClientes() {
  * @return Lista<Perros>
  */
 Lista<Perros> Localidad::getPerros() {
-    return null;
+    Lista<Perro> perros = Lista<Perro>();
+	for(int i=1;i<=sucursales.getTam();i++){
+		for(int j=1;j<=sucursales.buscar(i).getPerrosSucursales().getTam();j++){			
+			perros.insertar_nodo(perros.getTam()+1,sucursales.buscar(i).getPerrosSucursales().buscar(j));
+		}
+	}
+    
+    return perros;
 }

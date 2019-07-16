@@ -8,6 +8,25 @@
 /**
  * AppPerros implementation
  */
+ 
+ /**
+ * Memoria Principal 6
+ * @param n
+ * @return Lista <Clientes>
+ */
+Lista <Clientes> Sucursal: :clienteMasPerros(int n) {
+	
+    return null;
+}
+
+/**
+ * Memoria Principal 9
+ * @param n
+ * @return void
+ */
+void Sucursal::getPerrosCumple(int  n) {
+    return;
+}
 
 
 /**

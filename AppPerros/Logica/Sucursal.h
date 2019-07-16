@@ -30,24 +30,15 @@ public:
 		id = to_string(idActual);
 		nombre = nom;
 		gerente = gere;		
-	}
-	    
-	/**
-	 * Memoria Principal 6
-	 * @param n
-	 */
-	Lista <Clientes> clienteMasPerros(int n);
+	}	    
+	
 	    
 	/**
 	 * Memoria Principal 7
 	 */
 	Lista <Perros> getPerrosSucursales();
 	    
-	/**
-	 * Memoria Principal 9
-	 * @param n
-	 */
-	void getPerrosCumple(int  n);
+	
 	
 	//getter
 	string getId(){return id;}
@@ -56,12 +47,12 @@ public:
 	/**
 	 * Memoria Principal 2
 	 */
-	Lista <Paseadores> getPaseadores();
+	Lista <Paseadores> getPaseadores(){return paseadores;}
 	    
 	/**
 	 * Memoria Principal 4
 	 */
-	Lista <Clientes> getClientes();
+	Lista <Clientes> getClientes(){return clientes;}
 	
 	// setter	
 	string setNombre(string n){nombre=n;}

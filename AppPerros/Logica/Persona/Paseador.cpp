@@ -11,5 +11,5 @@
  */
  
  Paseador::addDia(Dia dia){
- 	dias.insertar_nodo(dias.getTam()-1,dia);
+ 	dias.insertar_nodo(dias.getTam()+1,dia);
  } 
