@@ -8,6 +8,13 @@
 
 #include "Persona.h"
 #include "../Dia.h"
+#include "../Utilidades/lista.h"
+
+#include <ctime>
+#include <string>
+#include <stdio.h>
+#include <stdlib.h>
+#include <sstream>
 
 
 class Paseador: public Persona {
@@ -19,14 +26,14 @@ private:
     string barrio;
     Lista<Dia> dias;
 public:
-	Paseador(string nom, string ape, string tel, string cel, char s,string i, string tI, string ciud, string pais, tm fecha, string dir, string bar){
-		this->Persona(nom, ape, tel, cel, s, i, tI);
+	Paseador(string nom, string ape, string tel, string cel, char s,string i, string tI, string ciud, string pais, tm fecha, string dir, string bar):Persona(nom, ape, tel, cel, s, i, tI){
+		
 		ciudadNacimiento = ciud;
 		paisNacimiento = pais;
 		fechaNacimiento = fecha;
 		direccion = dir;
 		barrio = bar;
-		Lista<Dia> dias = Lista<Dia>();		
+				
 	}
 	
 	// getter
@@ -38,15 +45,21 @@ public:
 	
 	// setter
 	void setCiudadN(string c){ciudadNacimiento=c;}
-	void setPaisN(string p){return paisNacimiento=p;}
-	void setFechaN(tm f){return fechaNacimiento=f;}
-	void setDireccion(string d){return direccion=d;}
-	void setBarrio(string b){return barrio=b;}
+	void setPaisN(string p){paisNacimiento=p;}
+	void setFechaN(tm f){fechaNacimiento=f;}
+	void setDireccion(string d){direccion=d;}
+	void setBarrio(string b){barrio=b;}
 	
-	void addDia(Dia dia);	
+	void addDia(Dia dia);
+ 		
 	
 	
 	
 };
+
+void Paseador::addDia(Dia dia){
+	
+ 	this->dias.insertar_nodo(dias.getTam()+1,dia);
+}
 
 #endif //_PASEADOR_H

@@ -2,23 +2,32 @@
  * Project Untitled
  */
 
-
 #ifndef _PERRO_H
 #define _PERRO_H
 
+#include <ctime>
+#include <string>
+#include <stdio.h>
+#include <stdlib.h>
+#include <sstream>
+
+using namespace std;
+
 class Perro {
 private: 
-    String id;
+    string id;
     tm fechaNacimiento;
-    String raza;
+    string raza;
     char tamano;
-    String tipoConcentrado;
+    string tipoConcentrado;
     string idCliente;
 public:
-	static int idActual=0;
-	Perro(tm f, string r, char tam, string tipoC, string iC){
-		idActual++;
-		id = to_string(idActual);
+	static int idActual;
+	Perro(tm f, string r, char tam, string tipoC, string iC){		
+		ostringstream ss;		
+		Perro::idActual++;
+		ss<<idActual;
+		id = ss.str();		
 		fechaNacimiento = f;
 		raza = r;	
 		tamano = tam;

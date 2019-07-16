@@ -7,7 +7,7 @@
 #define _CLIENTE_H
 
 #include "Persona.h"
-#include "Perro.h"
+#include "../Perro.h"
 #include "../Utilidades/lista.h"
 
 
@@ -16,8 +16,8 @@ private:
     string localidad;
     Lista <Perro> perros;
 public:
-	Cliente(string nom, string ape, string tel, string cel, char s,string i, string tI,string lo){
-		this->Persona(nom, ape, tel, cel, s, i, tI);
+	Cliente(string nom, string ape, string tel, string cel, char s,string i, string tI,string lo):Persona(nom, ape, tel, cel, s, i, tI){		
+		
 		localidad = lo;
 		perros = Lista<Perro>();
 	}

@@ -6,6 +6,18 @@
 #ifndef _PASEO_H
 #define _PASEO_H
 
+#include "./Utilidades/lista.h"
+#include "./Perro.h"
+
+
+#include <ctime>
+#include <string>
+#include <stdio.h>
+#include <stdlib.h>
+#include <sstream>
+
+using namespace std;
+
 class Paseo {
 private: 
     string id;
@@ -18,22 +30,25 @@ private:
     /**
  * Estados posibles : (R reservado, C completado, N no cubierto)
  */
-	char estado = 'R';
+	char estado;
     string localidad;
     string observaciones;
     
 public:	
-	static int idActual=0;
+	static int idActual;
 	Paseo(tm f, int horI, int horF, string tipoAct, Paseador pas, string lo, string ob){
-		idActual++;
-		id = to_string(idActual);
+		ostringstream ss;		
+		Perro::idActual++;
+		ss<<idActual;
+		id = ss.str();
 		fecha = f;
 		horaInicial = horI;
 		horaFin = horF
 		tipoActividad = tipoAct;
 		paseador = pas;
 		localidad = lo;
-		observaciones = ob;			
+		observaciones = ob;	
+		estado = 'R';		
 	}
 	
 	//getter

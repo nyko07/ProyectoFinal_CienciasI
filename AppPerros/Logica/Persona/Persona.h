@@ -6,7 +6,13 @@
 #ifndef _PERSONA_H
 #define _PERSONA_H
 
+#include <ctime>
+#include <string>
+#include <stdio.h>
+#include <stdlib.h>
+#include <sstream>
 
+using namespace std;
 
 class Persona{
 private: 
@@ -24,7 +30,7 @@ public:
 		telefono = tel;
 		celular = cel;
 		sexo = s;
-		id = i+" "+ti;		
+		id = i+" "+tI;		
 	}
 	// getter
 	string getId(){return id;}
