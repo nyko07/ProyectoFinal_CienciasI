@@ -8,6 +8,7 @@
 #include <ctime>
 #include <string>
 #include <stdio.h>
+#include <time.h>
 #include <stdlib.h>
 #include <sstream>
 
@@ -22,17 +23,22 @@ private:
     string tipoConcentrado;
     string idCliente;
 public:
-	static int idActual;
-	Perro(tm f, string r, char tam, string tipoC, string iC){		
+	
+	//tm f
+	Perro(string r, char tam, string tipoC, string iC){		
 		ostringstream ss;		
-		Perro::idActual++;
+		idActual++;
 		ss<<idActual;
 		id = ss.str();		
-		fechaNacimiento = f;
+		//fechaNacimiento = f;
 		raza = r;	
 		tamano = tam;
 		tipoConcentrado = tipoC;
 		idCliente = iC;	
+	}
+	
+	Perro(){		
+		
 	}
 	
 	// getter
@@ -47,7 +53,13 @@ public:
 	void setRaza(string r){raza=r;}
 	void setTamano(char t){tamano=t;}
 	void setTipoConcentrado(string c){tipoConcentrado=c;}
-	void setIdCliente(string i){idCliente=i;}
+	void setIdCliente(string i){idCliente=i;}	
+
+	
+	static int idActual;
 };
+
+
+//Perro::idActual = 0;
 
 #endif //_PERRO_H

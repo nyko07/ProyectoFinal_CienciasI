@@ -26,13 +26,19 @@ private:
     string barrio;
     Lista<Dia> dias;
 public:
-	Paseador(string nom, string ape, string tel, string cel, char s,string i, string tI, string ciud, string pais, tm fecha, string dir, string bar):Persona(nom, ape, tel, cel, s, i, tI){
+	//tm fecha despus de pais
+	Paseador(string nom, string ape, string tel, string cel, char s,string i, string tI, string ciud, string pais, string dir, string bar):Persona(nom, ape, tel, cel, s, i, tI){
 		
 		ciudadNacimiento = ciud;
 		paisNacimiento = pais;
-		fechaNacimiento = fecha;
+		//fechaNacimiento = fecha;
 		direccion = dir;
 		barrio = bar;
+				
+	}
+	
+	Paseador(){
+		
 				
 	}
 	

@@ -1,5 +1,8 @@
 #include <iostream>
 
+#include "../Logica/Persona/Cliente.h"
+#include "../Logica/Persona/Paseador.h"
+#include "../Logica/Perro.h"
 
 using namespace std;
 
@@ -29,8 +32,16 @@ void consulta6();
 void consulta7();
 void consulta8();
 
+int Perro::idActual;
 
 int main(int argc, char** argv) {
+	
+	Perro::idActual = 0;
+	Cliente c = Cliente("Nicolas", "Herrera", "3243433", "543345", 'd', "1234", "cedu", "Bulgaria");
+	Perro p = Perro("ptbull", 'p', "Carnehumana", "1234");
+	c.addPerro(p);
+	
+	Paseador p = Paseador("Marce", "Rubi", "31234", "2334", 'd', "ffsdf", "dfdsf", "cali", "Colo", "dfsf22", "via");
 	
 	int opc;
 	
@@ -219,6 +230,8 @@ void menuPersona(){
 
 
 void cliente(){
+	
+	
 	
 	int opc;
 	
