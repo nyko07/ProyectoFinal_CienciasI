@@ -89,3 +89,13 @@ Lista <Paseador> AppPerros::getPaseadoresDisponibles(Cliente cliente, Dia dia) {
 void AppPerros::getPerrosEdad(tm rangoIni, tm rangoFin) {
     return;
 }
+
+/**
+ * @param cliente
+ * @param perro
+ * @param horario
+ * @return bool
+ */
+bool AppPerros::reservar(Cliente cliente, Perro perro, Dia horario) {
+    return false;
+}

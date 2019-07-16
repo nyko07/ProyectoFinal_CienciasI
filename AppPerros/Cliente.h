@@ -12,7 +12,7 @@
 class Cliente: public Persona {
 private: 
     String localidad;
-    Lista <Perro> perros;
+    Lista <Perro,string> perros;
 };
 
 #endif //_CLIENTE_H

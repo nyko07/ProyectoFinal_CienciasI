@@ -13,6 +13,7 @@ private:
     String raza;
     char tamaño;
     String tipoConcentrado;
+    int idCliente;
 };
 
 #endif //_PERRO_H

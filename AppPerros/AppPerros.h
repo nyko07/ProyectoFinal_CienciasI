@@ -64,11 +64,22 @@ Lista <Paseador> getPaseadoresDisponibles(Cliente cliente, Dia dia);
  * @param rangoFin
  */
 void getPerrosEdad(tm rangoIni, tm rangoFin);
+    
+/**
+ * @param cliente
+ * @param perro
+ * @param horario
+ */
+bool reservar(Cliente cliente, Perro perro, Dia horario);
 private: 
     Simulacion simulacion;
     Archivos  archivos;
-    RBTree <Localidad> localidades;
-    RBTree <Paseo> paseos;
+    RBTree <Localidad,id> localidades;
+    Lista <Paseo> paseos;
+    RBTree <Cliente,int> clientes;
+    RBTree <Sucursal, int> sucursales;
+    RBTree <Paseador, int> paseadores;
+    RBTree <Perro, int> perros;
 };
 
 #endif //_APPPERROS_H

@@ -12,8 +12,8 @@ private:
     String fecha;
     String hora;
     String tipoActividad;
-    RBTree<Perro> perrros;
-    RBTree<Paseador> paseadores;
+    RBTree<Perro,string> perrros;
+    RBTree<Paseador,string> paseadores;
     /**
  * Estados posibles : (R reservado, C completado, N no cubierto)
  */

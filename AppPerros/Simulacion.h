@@ -11,8 +11,9 @@ public:
     
 /**
  * @param paseos
+ * @param clientes
  */
-void getComparacionLocalidadTam(Lista<Paseo> paseos);
+void getComparacionLocalidadTam(Lista<Paseo> paseos, Lista <Cliente> clientes);
     
 /**
  * @param paseos

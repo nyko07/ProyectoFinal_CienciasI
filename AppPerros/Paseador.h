@@ -16,7 +16,7 @@ private:
     tm fechaNacimiento;
     String direccion;
     String barrio;
-    RBTree<Dia> dias;
+    Lista<Dia> dias;
 };
 
 #endif //_PASEADOR_H

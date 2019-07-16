@@ -39,8 +39,8 @@ private:
     String idSucursal;
     String nombre;
     String gerente;
-    RBTree<Paseador> paseadores;
-    RBTree<Cliente> clientes;
+    Lista<Paseador> paseadores;
+    Lista<Cliente> clientes;
 };
 
 #endif //_SUCURSAL_H

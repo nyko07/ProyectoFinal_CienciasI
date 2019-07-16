@@ -35,7 +35,7 @@ private:
     int numeroPaseadores;
     int craInicio;
     int craFin;
-    RBTree <Sucursal> sucursales;
+    Lista<Sucursal> sucursales;
 };
 
 #endif //_LOCALIDAD_H

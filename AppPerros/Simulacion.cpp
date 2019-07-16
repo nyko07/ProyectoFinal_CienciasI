@@ -12,9 +12,10 @@
 
 /**
  * @param paseos
+ * @param clientes
  * @return void
  */
-void Simulacion::getComparacionLocalidadTam(Lista<Paseo> paseos) {
+void Simulacion::getComparacionLocalidadTam(Lista<Paseo> paseos, Lista <Cliente> clientes) {
     return;
 }
 
