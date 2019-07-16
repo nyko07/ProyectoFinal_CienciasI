@@ -174,23 +174,6 @@
 										},
 										{
 											"_type": "UMLAttributeView",
-											"_id": "AAAAAAFr8RLKdm66U1Q=",
-											"_parent": {
-												"$ref": "AAAAAAFr8RKTD26VrH0="
-											},
-											"model": {
-												"$ref": "AAAAAAFr8RLKR263l7k="
-											},
-											"font": "Arial;13;0",
-											"left": 1469,
-											"top": 411,
-											"width": 95.037109375,
-											"height": 13,
-											"text": "-tipoId: string",
-											"horizontalAlignment": 0
-										},
-										{
-											"_type": "UMLAttributeView",
 											"_id": "AAAAAAFr8RVfZG7NVIg=",
 											"_parent": {
 												"$ref": "AAAAAAFr8RKTD26VrH0="
@@ -200,7 +183,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1469,
-											"top": 426,
+											"top": 411,
 											"width": 95.037109375,
 											"height": 13,
 											"text": "-telefono: string",
@@ -217,7 +200,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1469,
-											"top": 441,
+											"top": 426,
 											"width": 95.037109375,
 											"height": 13,
 											"text": "-celular: string",
@@ -234,7 +217,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1469,
-											"top": 456,
+											"top": 441,
 											"width": 95.037109375,
 											"height": 13,
 											"text": "-sexo: char",
@@ -251,7 +234,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1469,
-											"top": 471,
+											"top": 456,
 											"width": 95.037109375,
 											"height": 13,
 											"text": "-email: string",
@@ -262,7 +245,7 @@
 									"left": 1464,
 									"top": 361,
 									"width": 105.037109375,
-									"height": 128
+									"height": 113
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -275,7 +258,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 1464,
-									"top": 489,
+									"top": 474,
 									"width": 105.037109375,
 									"height": 10
 								},
@@ -6847,16 +6830,6 @@
 								"$ref": "AAAAAAFr8RKTDW6Nr+8="
 							},
 							"name": "apellido",
-							"visibility": "private",
-							"type": "string"
-						},
-						{
-							"_type": "UMLAttribute",
-							"_id": "AAAAAAFr8RLKR263l7k=",
-							"_parent": {
-								"$ref": "AAAAAAFr8RKTDW6Nr+8="
-							},
-							"name": "tipoId",
 							"visibility": "private",
 							"type": "string"
 						},
