@@ -4,6 +4,10 @@
 
 
 #include "Localidad.h"
+#include "../Persona/Paseador.h"
+#include "../Persona/Cliente.h"
+#include "Perro.h"
+#include "../Utilidades/lista.h"
 
 /**
  * Localidad implementation
@@ -11,18 +15,11 @@
 
 
 /**
- * Memoria Principal 1
- * @return Lista<Sucursal>
- */
-Lista<Sucursal> Localidad::getSucursales() {
-    return null;
-}
-
-/**
  * Memoria Principal 3
  * @return Lista <Paseador>
  */
 Lista <Paseador> Localidad::getPaseadores() {
+	
     return null;
 }
 
