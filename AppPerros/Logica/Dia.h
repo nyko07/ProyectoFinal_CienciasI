@@ -31,6 +31,8 @@ public:
 		horaInicio = hIni;
 		horaFin = hFin;		
 	}
+	Dia(){
+	}
 	
 	//getter
 	string getId(){return id;}

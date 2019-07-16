@@ -37,10 +37,7 @@ public:
 				
 	}
 	
-	Paseador(){
-		
-				
-	}
+	
 	
 	// getter
 	string getCiudadN(){return ciudadNacimiento;}

@@ -33,6 +33,7 @@ void consulta7();
 void consulta8();
 
 int Perro::idActual;
+int Dia::idActual;
 
 int main(int argc, char** argv) {
 	
@@ -41,7 +42,7 @@ int main(int argc, char** argv) {
 	Perro p = Perro("ptbull", 'p', "Carnehumana", "1234");
 	c.addPerro(p);
 	
-	Paseador p = Paseador("Marce", "Rubi", "31234", "2334", 'd', "ffsdf", "dfdsf", "cali", "Colo", "dfsf22", "via");
+	Paseador pa = Paseador("Marce", "Rubi", "31234", "2334", 'd', "ffsdf", "dfdsf", "cali", "Colo", "dfsf22", "via");
 	
 	int opc;
 	
