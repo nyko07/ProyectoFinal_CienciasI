@@ -1000,7 +1000,7 @@ template<class T,class O>
 void RBtree<T,O>::arbolToLista()
 
 {
-
+	lista = Lista<T>(); 
      toLista(root);
 
 }

@@ -83,7 +83,7 @@ public:
 	 * Consultas 2
 	 * @param dia
 	 */
-	Lista <Paseador> getPaseadoresDisponibles2(Dia dia);
+	Lista <Paseador> getPaseadoresDisponibles2(Date fecha, int hIni, int hFin);
 	    
 	/**
 	 * Consultas 4
@@ -124,14 +124,14 @@ public:
 	 * @param rangoIni
 	 * @param rangoFin
 	 */
-	void getPerrosEdad(int rangoIni, int rangoFin);
+	void getPerrosEdad(Date fIni, Date fFin);
 	    
 	/**
 	 * @param cliente
 	 * @param perro
 	 * @param horario
 	 */
-	bool reservar(Cliente cliente, Perro perro, Dia horario);
+	bool reservar(Cliente cliente, Perro perro, Date fecha, int hIni, int hFin, string tipoAct, string obser);
 	
 	Lista<Paseo> getPaseosFecha(Date fecha);
 };
@@ -195,8 +195,29 @@ Lista <Sucursal> AppPerros::getAreaSucursales(int clIni, int clFin, int crIni, i
  * @param dia
  * @return Lista <Paseador>
  */
-Lista <Paseador> AppPerros::getPaseadoresDisponibles2(Dia dia) {
-    return Lista<Paseador>();
+Lista <Paseador> AppPerros::getPaseadoresDisponibles2(Date fecha, int hIni, int hFin) {
+    
+    paseadores.arbolToLista();
+    Lista<Paseador> pases = paseadores.getLista();
+    Lista<Paseador> paseadoresDispo;
+    Lista<Paseo> paseosF = getPaseosFecha(fecha);
+    for (int i=1;i<=pases.getTam();i++){
+    	Paseador p = pases.buscar(i);
+    	int cont=0;
+    	for(int j=1;j<=paseosF.getTam();j++){
+    		Paseo pa = paseosF.buscar(j);    		
+    		if(pa.getPaseador().getId()==p.getId()){
+    			if(!(hFin<pa.getHoraIni() || hIni>pa.getHoraFin())){
+    				cont++;
+				}
+			}
+		}
+		if(cont==0){
+			paseadoresDispo.insertar_nodo(paseadoresDispo.getTam()+1,p);	
+		}   	
+	}
+	
+	return paseadoresDispo;
 }
 
 /**
@@ -313,6 +334,9 @@ Lista <Paseador> AppPerros::getPaseadoresDisponibles(string idCliente, Date fech
     		if(pa.getPaseador().getId()==p.getId()){
     			if(!(hFin<pa.getHoraIni() || hIni>pa.getHoraFin())){
     				cont++;
+				}else if(pa.getPerros().getTam()<2){
+					
+					break;
 				}
 			}
 		}
@@ -345,8 +369,29 @@ Lista<Paseo> AppPerros::getPaseosFecha(Date fecha){
  * @param rangoFin
  * @return void
  */
-void AppPerros::getPerrosEdad(int rangoIni, int rangoFin) {
-    
+void AppPerros::getPerrosEdad(Date fIni, Date fFin) {
+    perros.arbolToLista();
+    Lista<Perro> perrosL = perros.getLista();
+    cout<<"Nombre Perro\t"<<"Edad(Años-Meses)\t"<<"Cliente\t"<<"Localidad"<<endl;
+    for(int i=1;i<=perrosL.getTam();i++){
+    	Perro perro = perrosL.buscar(i);
+    	if(perro.getFechaNacimiento().getAnio()<=fFin.getAnio() && perro.getFechaNacimiento().getAnio()>=fIni.getAnio()){
+			if(perro.getFechaNacimiento().getMes()<=fFin.getMes() && perro.getFechaNacimiento().getMes()>=fIni.getMes()){
+  				Cliente c = clientes.search(perro.getIdCliente())->key;
+  				Date actual = Date();
+  				string edad;
+  				int edadA = actual.getAnio()-perro.getFechaNacimiento().getAnio();
+  				int edadM = actual.getMes()-perro.getFechaNacimiento().getMes();  				
+  				if(edadM<0){
+  					edadA = edadA-1;
+					edadM = 12+edadM;	
+				}				
+				
+  				
+				cout<<perro.getNombre()<<"\t"<<edadA<<" años "<<edadM<<" meses\t"<<c.getNombre()<<"\t"<<c.getLocalidad()<<endl;
+		  	}
+		}
+	}
 }
 
 /**
@@ -355,8 +400,17 @@ void AppPerros::getPerrosEdad(int rangoIni, int rangoFin) {
  * @param horario
  * @return bool
  */
-bool AppPerros::reservar(Cliente cliente, Perro perro, Dia horario) {
-    return false;
+bool AppPerros::reservar(Cliente cliente, Perro perro, Date fecha, int hIni, int hFin, string tipoAct, string obser) {
+    Lista<Paseador> pasDispo;
+    pasDispo = getPaseadoresDisponibles2(fecha,hIni,hFin);
+    if(pasDispo.getTam()>0){
+    	Paseo paseo = Paseo(fecha,hIni,hFin,tipoAct,pasDispo.buscar(1),cliente.getLocalidad(),obser);
+    	paseos.insertar_nodo(paseos.getTam()+1,paseo);
+    	return true;
+	}else{
+		return false;
+	}
+	
 }
 
 #endif //_APPPERROS_H
