@@ -31,15 +31,16 @@ class ArchivosPerros: public Archivos {
  */
 private: 
     string id;
+    string nombre;
     string idCliente;
     string fechaNacimiento;
     string raza;
-    char tamanio;
+    string tamanio;
     string tipoConcentrado;
     
 public:
 	int getTam();	
-   	void guardarDatos(string id, string idCliente, string fechaNacimiento, string raza, char tamanio, string tipoConcentrado); 
+   	void guardarDatos(string id,string nombre, string idCliente, string fechaNacimiento, string raza, char tamanio, string tipoConcentrado); 
 	Lista<string> separarTextos(char separador, string texto);
 	Lista< Lista<string> > cargarDatos();
 };
@@ -70,12 +71,7 @@ Lista< Lista<string> > ArchivosPerros::cargarDatos() {
 	int x = getTam();
 	//string *tmp = new string[10];
 	int a = 0;
-	
-	
 	string linea;
-	
-	
-	
 	Lista< Lista<string> > l;
 	while(getline(Leer,linea)){
 		Lista<string> lista= separarTextos(' ',linea);
@@ -85,12 +81,7 @@ Lista< Lista<string> > ArchivosPerros::cargarDatos() {
 			//cout<<tmp[a][i]<<"hola"<<endl;
 		}
 		l.insertar_nodo(l.getTam()+1,aux);		
-		
-		
-		
-		a++;
-		
-		
+		a++;	
 	}
 	
 	Leer.close();
@@ -136,10 +127,10 @@ Lista<string> ArchivosPerros::separarTextos(char separador, string texto){
  * @param tipoConcentrado
  * @return void
  */
-void ArchivosPerros::guardarDatos(string id, string idCliente, string fechaNacimiento, string raza, char tamanio, string tipoConcentrado) {
+void ArchivosPerros::guardarDatos(string id,string nombre, string idCliente, string fechaNacimiento, string raza, char tamanio, string tipoConcentrado) {
     ofstream guardar;
 	guardar.open("registros/perros.txt",ios::app);
-	guardar<<id<<" "<<idCliente<<" "<<fechaNacimiento<<" "<<raza<<" "<<tamanio<<" "<<tipoConcentrado<<endl;
+	guardar<<id<<" "<<nombre<<" "<<idCliente<<" "<<fechaNacimiento<<" "<<raza<<" "<<tamanio<<" "<<tipoConcentrado<<endl;
 }
 
 #endif //_ARCHIVOSPERROS_H

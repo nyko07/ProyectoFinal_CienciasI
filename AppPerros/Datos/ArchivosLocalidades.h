@@ -6,6 +6,7 @@
 #ifndef _ARCHIVOSLOCALIDADES_H
 #define _ARCHIVOSLOCALIDADES_H
 
+#include "../Logica/Utilidades/lista.h"
 #include "Archivos.h"
 #include <string>
 #include <stdio.h>
@@ -35,26 +36,60 @@ private:
     string craInicio;
     string craFin;
 public:
-	string** cargarDatos();
+	Lista< Lista<string> > cargarDatos();
+   	Lista<string> separarTextos(char separador, string texto);
 	void guardarDatos(string nombre, int calleInicio, int calleFin, int numeroPaseadores, int craInicio, int craFin);
 };
-string** ArchivosLocalidades::cargarDatos() {
-   ifstream Leer;
-	Leer.open("Localidades.txt");
-	Leer>>nombre;
-	while(!Leer.eof()){
-		Leer>>calInicio;
-		Leer>>calFin;
-		Leer>>numeroPaseadores;
-		Leer>>craInicio;
-		Leer>>craFin;
-		
-		Leer>>nombre;
+Lista< Lista<string> > ArchivosLocalidades::cargarDatos() {
+    ifstream Leer;
+	Leer.open("registros/Localidades.txt");
+	//string *tmp = new string[10];
+	int a = 0;
+	string linea;
+	Lista< Lista<string> > l;
+	while(getline(Leer,linea)){
+		Lista<string> lista= separarTextos(' ',linea);
+		Lista<string> aux;
+		for(int i=1;i<=lista.getTam();i++){
+			aux.insertar_nodo(aux.getTam()+1,lista.buscar(i));						
+			//cout<<tmp[a][i]<<"hola"<<endl;
+		}
+		l.insertar_nodo(l.getTam()+1,aux);		
+		a++;	
 	}
+	
 	Leer.close();
-    return NULL;
+    return l;
 }
-
+Lista<string> ArchivosLocalidades::separarTextos(char separador, string texto){
+	Lista<string> lista;
+	int in=0;
+	int fi=0;
+	string palabra;
+	for(int i=0;i<texto.length();i++){
+		
+		if(texto[i]==separador){
+			fi=i+1;
+			palabra = "";
+			for(int j=in;j<fi;j++){
+				palabra = palabra + texto[j];
+			}
+			
+			lista.insertar_nodo(lista.getTam()+1,palabra);
+			
+			in=fi;
+		}
+	}
+	palabra = "";
+	fi=texto.length();
+	for(int j=in;j<fi;j++){
+				palabra = palabra + texto[j];
+	}
+	
+	lista.insertar_nodo(lista.getTam()+1,palabra);
+	
+	return lista;
+}
 /**
  * @param nombre
  * @param calleInicio
@@ -66,8 +101,8 @@ string** ArchivosLocalidades::cargarDatos() {
  */
 void ArchivosLocalidades::guardarDatos(string nombre, int calleInicio, int calleFin, int numeroPaseadores, int craInicio, int craFin) {
     ofstream guardar;
-	guardar.open("Localidades.txt",ios::app);
-	guardar<<nombre<<" "<<calInicio<<" "<<calFin<<" "<<numeroPaseadores<<" "<<craInicio<<" "<<craFin<<endl;
+	guardar.open("registros/Localidades.txt",ios::app);
+	guardar<<nombre<<" "<<calleInicio<<" "<<calleFin<<" "<<numeroPaseadores<<" "<<craInicio<<" "<<craFin<<endl;
 }
 
 #endif //_ARCHIVOSLOCALIDADES_H
