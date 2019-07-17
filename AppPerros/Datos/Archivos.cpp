@@ -4,24 +4,16 @@
 
 
 #include "Archivos.h"
+#include <iostream>
+#include <stdlib.h>
 
+using namespace std;
 /**
  * Archivos implementation
  */
 
 
 /**
- * @param datos
- * @return bool
+ * @return string**
  */
-bool Archivos::guardarDatos(Lista <Lista<Lista<string>>> datos) {
-    return false;
-}
 
-/**
- * @param datos
- * @return bool
- */
-bool Archivos::cargarDatos(Lista <Lista<Lista<string>>> datos) {
-    return false;
-}
