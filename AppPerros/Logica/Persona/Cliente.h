@@ -22,6 +22,10 @@ public:
 		perros = Lista<Perro>();
 	}
 	
+	Cliente(){
+		
+	}
+	
 	void addPerro(Perro perro);
 	
 	

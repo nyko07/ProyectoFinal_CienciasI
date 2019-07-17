@@ -40,9 +40,7 @@ private:
     RBtree <Perro, string> perros;
     
 public:
-	AppPerros(){
-		paseos = Lista<Paseo>();
-	}
+	
 	
 	//setter
 	void setLocalidades(RBtree<Localidad,string> l){localidades = l;}
@@ -408,6 +406,9 @@ bool AppPerros::reservar(Cliente cliente, Perro perro, Date fecha, int hIni, int
     	paseos.insertar_nodo(paseos.getTam()+1,paseo);
     	return true;
 	}else{
+		Paseo paseo = Paseo(fecha,hIni,hFin,tipoAct,pasDispo.buscar(1),cliente.getLocalidad(),obser);
+    	paseo.setEstado('N');
+		paseos.insertar_nodo(paseos.getTam()+1,paseo);
 		return false;
 	}
 	
