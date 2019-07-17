@@ -31,7 +31,7 @@ public:
 		telefono = tel;
 		celular = cel;
 		sexo = s;
-		id = i+" "+tI;		
+		id = i;		
 	}
 	Persona(){
 	}

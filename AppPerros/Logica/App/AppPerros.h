@@ -42,6 +42,7 @@ private:
 public:
 	
 	
+	
 	//setter
 	void setLocalidades(RBtree<Localidad,string> l){localidades = l;}
 	void setClientes(RBtree<Cliente,string> l){clientes = l;}

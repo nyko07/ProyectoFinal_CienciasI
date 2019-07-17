@@ -1,5 +1,6 @@
 #include <iostream>
 
+#include "../Logica/App/Simulacion.h"
 #include "../Logica/App/AppPerros.h"
 #include "../Logica/Persona/Cliente.h"
 #include "../Logica/Persona/Persona.h"
@@ -25,7 +26,7 @@ void reporPaseador();
 void consultas();
 void cliente();
 void paseador();
-int perro();
+void perro(Cliente c);
 bool registrarCliente();
 void verCliente();
 bool editarCliente();
@@ -55,9 +56,10 @@ Cliente c;
 Paseador pase;
 Perro per;
 Lista<Perro> listaPerros;
-int numeroPerros = 0;
-int temp = 0;
 
+
+
+//Simulacion simulacion;
 AppPerros appPerros = AppPerros();
 
 
@@ -115,35 +117,89 @@ int main(int argc, char** argv) {
 void reserva(){
     system("cls");
     
-    int cliente;
-    int perro;
-    int horario;
+    string tCliente, tActividad, tObservacion;
+    Cliente cliente;
+    string idPerro;
+    int horarioIncio;
+    int horarioFin;
+    Date fecha;
+    int dia,mes,anio;
+    
     cout<<"\tAppPERROS"<<endl;
     cout<<"\tReserva"<<endl;
 	cout<<"<========================================>"<<endl;
 	cout<<"Realizar la reserva a continuacion:"<<endl;
 	cout<<"------------------------------------------"<<endl;
 	
-	cout<<"Nombre del cliente: ";
-	cin>>cliente;
+	cout<<"Id cliente: ";
+	cin>>tCliente;
 	cout<<endl;
-	//Buscar el cliente
+	cliente = appPerros.getClientes().search(tCliente)->key;
+	cout<<"Perros"<<endl;
+	cout<<"id\t nombre"<<endl;
+	for(int i=1;i<=cliente.getPerros().getTam();i++){
+		Perro p = cliente.getPerros().buscar(i);
+		cout<<p.getId()<<"\t"<<p.getNombre()<<endl;
+	}	
 	
-	cout<<"Nombre del perro: ";
-	cin>>perro;
+	cout<<"Id del perro: ";
+	cin>>idPerro;
 	cout<<endl;
-	//Buscar el perro
 	
-	cout<<"Horario del paseo() :";
-	cin>>horario;
+	cout<<"Fecha reserva"<<endl;
+	cout<<"Dia: ";
+	cin>>dia;
+	cout<<endl;
+	
+	cout<<"Mes: ";
+	cin>>mes;
+	cout<<endl;
+	
+	cout<<"Año: ";
+	cin>>anio;
+	cout<<endl;	
+	
+	fecha=Date(dia,mes,anio);
+	
+	cout<<"Tipo actividad ";
+	cin>>tActividad;
+	cout<<endl;
+	
+	cout<<"Observacion: ";
+	cin>>tObservacion;
+	cout<<endl;
+		
+	Perro paux = appPerros.getPerros().search(idPerro)->key;
+	
+	cout<<"Horario del paseo"<<endl;
+	cout<<"hora inicio:";
+	cin>>horarioIncio;
+	cout<<endl;
+	
+	cout<<"hora fin :";
+	cin>>horarioFin;
 	cout<<endl;
 	//Poner el horario
 	
-	cout<<"....."<<endl;
-	cout<<"Reserva realizada con exito!!"<<endl;
-	cout<<endl;
+	if(appPerros.reservar(cliente,paux,fecha,horarioIncio,horarioFin,tActividad,tObservacion)){
+		cout<<"....."<<endl;
+		cout<<"Reserva realizada con exito!!"<<endl;
+		cout<<endl;
+		system("pause");
+		main(1,NULL);
+	}else{
+		cout<<"....."<<endl;
+		cout<<"No se pudo hacer reserva, no hay disponibilidad!!"<<endl;
+		cout<<endl;
+		system("pause");
+		main(1,NULL);
+	}
 	
-	system("pause");
+	
+	
+	
+	
+	
 	
 }
 
@@ -355,20 +411,7 @@ void reporDiario(){
     cout<<"\tReporte diario total"<<endl;
 	cout<<"<========================================>"<<endl;
 	
-	cout<<"Total de perros atendidos: ";
-	//Metodo de los perros atendidos
-	cout<<endl;
 	
-	cout<<"Total de perros que no se pudieron cubrir: ";
-	//Metodo de los perros que no se pudieron cubrir
-	cout<<endl;
-	
-	cout<<"Total servicios a la localidad a la que pertenecen: ";
-	//Metodo de los servicios a la localidad a la que pertenecen
-	cout<<endl;
-	
-	cout<<"Total servicios en una localidad diferente a la inscrita: ";
-	//Metodo de los servicios en una localidad diferente a la inscrita
 	cout<<endl;
     
     system("pause");
@@ -464,7 +507,7 @@ void consulta1(){
 	cout<<endl;
 	
 	cout<<"Las sucursales que podrian hacerse cargo de perros en el area mencionada son:"<<endl;
-	//Llamar al método para la primera consulta
+	appPerros.getAreaSucursales(calleIni, calleFin, carreraIni, carreraFin);
 	cout<<endl;
 	
 	system("pause");
@@ -532,8 +575,8 @@ void consulta4(){
 	
 	system("cls");
     
-    int localidad;
-    int raza;
+    string localidad;
+    string raza;
     cout<<"\tAppPERROS"<<endl;
     cout<<"\tReserva"<<endl;
 	cout<<"<========================================>"<<endl;
@@ -550,7 +593,7 @@ void consulta4(){
 	
 	
 	cout<<"Perros:"<<endl;
-	//Llamar al método para la cuarta consulta
+	appPerros.getPerrosRaza(localidad, raza);
 	cout<<endl;
 	
 	system("pause");
@@ -618,24 +661,24 @@ void consulta7(){
 	
 	system("cls");
     
-    int localidad;
-    int tamano;
+    string localidad;
+    char tamano;
     cout<<"\tAppPERROS"<<endl;
     cout<<"\tReserva"<<endl;
 	cout<<"<========================================>"<<endl;
-	cout<<"Consulta 1"<<endl;
+	cout<<"Consulta 7"<<endl;
 	cout<<"------------------------------------------"<<endl;
 	
 	cout<<"Localidad: ";
 	cin>>localidad;
 	cout<<endl;
 	
-	cout<<"Tamano (grande,mediano,pequeno): ";
+	cout<<"Tamano (g,m,p): ";
 	cin>>tamano;
 	cout<<endl;
 	
-	cout<<"Perros con las condiciones anteriores:"<<endl;
-	//Llamar al método para la septima consulta
+	cout<<"Perros con las condiciones anteriores: "<<endl;
+	appPerros.getPerrosTam(localidad,tamano);
 	cout<<endl;
 	
 	system("pause");
@@ -721,7 +764,7 @@ bool registrarCliente(){
 	
 	c = Cliente(nombre, apellido, telefono, celular, sexo, id, tipoId,localidad,email);
 	
-	
+	int temp = 0;
 	
 	cout<<"Ingrese cantidad de perros a registrar: ";
 	cin>>temp;
@@ -731,22 +774,24 @@ bool registrarCliente(){
     cout<<"Registro Perro"<<endl;	
 	int opc;
 	
+
 	
-	for(numeroPerros = 0;numeroPerros>temp;numeroPerros++){
-        opc = perro();   
+	for(int numeroPerros = 0;numeroPerros<temp;numeroPerros++){
+        perro(c);   
     }
+    cout<<"aa";
     
     //AGREGAR CLIENTE ARBOL
-    appPerros.getClientes().insert(c,c.getId());
+    appPerros.getClientes().insert(c,c.getId());    
     
-    numeroPerros = 0;
+    
     
     system("pause");
     
 	return true;
 }
 
-int perro(){
+void perro(Cliente c){
 	
     system("cls");
     cout<<"\tAppPERROS"<<endl;
@@ -759,7 +804,7 @@ int perro(){
     
     Perro perro;
     string idPerro, raza, tipoConcentrado,nombre;
-    Date fechaNacimiento;
+    Date fechaN;
     int dia,mes,anio;
     char tamano;
     
@@ -774,7 +819,9 @@ int perro(){
 	cin>>mes;
 	cout<<"Anio: ";
 	cin>>anio;
-	fechaNacimiento = Date(dia,mes,anio);
+	
+	fechaN = Date();
+	
 	cout<<endl;
 	
 	cout<<"Ingrese raza: ";
@@ -789,26 +836,14 @@ int perro(){
 	cin>>tipoConcentrado;
 	cout<<endl;
     
-    int idCliente;
-    perro = Perro(nombre, fechaNacimiento, raza, tamano, tipoConcentrado, c.getId());    
     
-    if(numeroPerros == 0 ){
-    	listaPerros.insertar_inicio(perro);
-	}
-	if(numeroPerros == temp){
-		listaPerros.insertar_nodo(numeroPerros,perro); 
-	}else{
-		listaPerros.insertar_nodo(numeroPerros,perro);
-	}
+    int idCliente;
+    perro = Perro(nombre, fechaN, raza, tamano, tipoConcentrado, c.getId());    
+    
+    c.addPerro(perro);
 	
     
-    
-       
-    
-    cout<<"Desea ingresar mas Perros? 0:no y 1:si ";
-    cin>>opc;
-    cout<<endl;
-    return opc;
+
 }
 
 void verCliente(){
@@ -818,16 +853,30 @@ void verCliente(){
     cout<<"\tAppPERROS"<<endl;
     cout<<"\tVer"<<endl;
 	cout<<"<========================================>"<<endl;
-	     
-
-	//cout<<"Id: "<<c.getId()<<endl;
-	//cout<<"Nombre: "<<c.getNombre()<<endl;
-	//cout<<"Apellido: "<<c.getApellido()<<endl;
-	//cout<<"Telefono: "<<c.getTelefono()<<endl;
-	//cout<<"Celular: "<<c.getCelular()<<endl;
-	//cout<<"Sexo: "<<c.getSexo()<<endl;
-	//cout<<"Localidad: "<<c.getLocalidad()<<endl;
+	string idCliente;
+	cout<<"id Cliente: ";
+	cin>>idCliente;
 	
+	Cliente c = appPerros.getClientes().search(idCliente)->key;
+
+	cout<<"Id: "<<c.getId()<<endl;
+	cout<<"Nombre: "<<c.getNombre()<<endl;
+	cout<<"Apellido: "<<c.getApellido()<<endl;
+	cout<<"Telefono: "<<c.getTelefono()<<endl;
+	cout<<"Celular: "<<c.getCelular()<<endl;
+	cout<<"Sexo: "<<c.getSexo()<<endl;
+	cout<<"Localidad: "<<c.getLocalidad()<<endl;
+	cout<<"\tPerros"<<endl;
+	for(int i=1;i<=c.getPerros().getTam();i++){
+		Perro p = c.getPerros().buscar(i);
+		cout<<"Perro "<<i<<endl;
+		cout<<"<========================================>"<<endl;
+		cout<<"Nombre: "<<p.getNombre()<<endl;
+		cout<<"Raza: "<<p.getRaza()<<endl;
+		cout<<"Tipo concentrado: "<<p.getTipoConcentrado()<<endl;
+		cout<<"Tamaño: "<<p.getTamano()<<endl;
+		cout<<"Fecha Nacimiento: "<<p.getFechaNacimiento().getDia()<<"/"<<p.getFechaNacimiento().getMes()<<"/"<<p.getFechaNacimiento().getAnio()<<endl;		
+	}
 	
 	
 	cout<<endl;
@@ -943,8 +992,6 @@ bool registrarPaseador(){
 	cin>>barrio;
 	cout<<endl;
 	
-	Paseador pase; 
-	
 	pase = Paseador(nombre, apellido, telefono, celular, sexo, id, tipoId, fecha,ciudad, pais, direccion, barrio, email);
 	
     
@@ -966,13 +1013,12 @@ void verPaseador(){
 	cout<<"<========================================>"<<endl;
 	     
 
-	//cout<<"Id: "<<c.getId()<<endl;
-	//cout<<"Nombre: "<<c.getNombre()<<endl;
-	//cout<<"Apellido: "<<c.getApellido()<<endl;
-	//cout<<"Telefono: "<<c.getTelefono()<<endl;
-	//cout<<"Celular: "<<c.getCelular()<<endl;
-	//cout<<"Sexo: "<<c.getSexo()<<endl;
-	//cout<<"Localidad: "<<c.getLocalidad()<<endl;
+	cout<<"Id: "<<pase.getId()<<endl;
+	cout<<"Nombre: "<<pase.getNombre()<<endl;
+	cout<<"Apellido: "<<pase.getApellido()<<endl;
+	cout<<"Telefono: "<<pase.getTelefono()<<endl;
+	cout<<"Celular: "<<pase.getCelular()<<endl;
+	cout<<"Sexo: "<<pase.getSexo()<<endl;
 	
 	
 	
@@ -990,11 +1036,77 @@ bool editarPaseador(){
     cout<<"\tEditar"<<endl;
 	cout<<"<========================================>"<<endl;
 	
-	cout<<"Ingrese el nombre: ";
-	string nombre;
+	string id, tipoId, nombre, apellido, telefono, celular, email, ciudad, pais, direccion, barrio;
+	char sexo;
+	Date fecha;
+	
+	cout<<"Ingrese nombre: ";
 	cin>>nombre;
-	//c.setNombre(nombre);
-	//cout<<c.getNombre();
+	pase.setNombre(nombre);
+	cout<<endl;
+	
+	cout<<"Ingrese apellido: ";
+	cin>>apellido;
+	pase.setApellido(apellido);
+	cout<<endl;
+	
+	cout<<"Ingrese email: ";
+	cin>>email;
+	cout<<endl;
+	
+	cout<<"Ingrese telefono: ";
+	cin>>telefono;
+	cout<<endl;
+	
+	cout<<"Ingrese celular: ";
+	cin>>celular;
+	cout<<endl;
+	
+	cout<<"Ingrese sexo: ";
+	cin>>sexo;
+	cout<<endl;
+	
+	cout<<"Ingrese id: ";
+	cin>>id;
+	cout<<endl;
+	
+	cout<<"Ingrese Tipo Id: ";
+	cin>>tipoId;
+	cout<<endl;
+	int dia,mes,anio;
+	cout<<"Ingrese fecha"<<endl;
+	cout<<"Dia: ";
+	cin>>dia;
+	cout<<"Mes: ";
+	cin>>mes;
+	cout<<"Anio: ";
+	cin>>anio;
+	fecha = Date(dia,mes,anio);
+	cout<<endl;
+	
+	
+	cout<<"Ingrese ciudad: ";
+	cin>>ciudad;
+	cout<<endl;
+	
+	cout<<"Ingrese pais: ";
+	cin>>pais;
+	cout<<endl;
+	
+	cout<<"Ingrese direccion: ";
+	cin>>direccion;
+	cout<<endl;
+	
+	cout<<"Ingrese barrio: ";
+	cin>>barrio;
+	cout<<endl;
+	
+	pase = Paseador(nombre, apellido, telefono, celular, sexo, id, tipoId, fecha,ciudad, pais, direccion, barrio, email);
+	
+    
+    //AGREGAR PASEADOR ARBOL
+    
+    appPerros.getPaseadores().insert(pase,pase.getId());
 	
 	cout<<endl;
     system("pause");

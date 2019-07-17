@@ -102,6 +102,8 @@ void RBtree<T,O>::insert(T nodo, O ord)
      t->color='r';
 
      p=root;
+     
+     
 
      q=NULL;
 
@@ -110,7 +112,7 @@ void RBtree<T,O>::insert(T nodo, O ord)
      {
 
            root=t;
-
+		
            t->parent=NULL;
 
      }
@@ -911,11 +913,12 @@ template<class T,class O>
 node<T,O> * RBtree<T,O>::search(O x)
 
 {
+	cout<<"etra g"<<endl;
 
      if(root==NULL)
-
+		
      {
-
+			cout<<"etra gssss"<<endl;
            //cout<<"\nEmpty Tree\n" ;
 
            return  NULL;
@@ -930,9 +933,9 @@ node<T,O> * RBtree<T,O>::search(O x)
      while(p!=NULL&& found==0)
 
      {
-
+			cout<<"entra "<<p->order<<" "<<x<<endl;
             if(p->order==x)
-
+				
                 found=1;
                 return p;
 
