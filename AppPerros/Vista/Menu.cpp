@@ -1,11 +1,20 @@
 #include <iostream>
 
+#include "../Logica/App/AppPerros.h"
 #include "../Logica/Persona/Cliente.h"
+#include "../Logica/Persona/Persona.h"
 #include "../Logica/Persona/Paseador.h"
 #include "../Logica/Perro.h"
+#include "../Logica/Paseo.h"
+#include "../Logica/Sucursal.h"
+#include "../Logica/Utilidades/Date.h"
+#include "../Logica/Utilidades/Lista.h"
+#include "../Logica/Utilidades/Arbolrb.h"
+#include "../Logica/Persona/Persona.h"
+//#include "../Datos/ArchivosClientes.h"
+//#include "../Datos/ArchivosPersonas.h"
 
 using namespace std;
-
 
 void reserva();
 void menuPersona();
@@ -16,11 +25,15 @@ void reporPaseador();
 void consultas();
 void cliente();
 void paseador();
-void perro();
-bool registrar();
-void ver();
-bool editar();
-bool eliminar();
+int perro();
+bool registrarCliente();
+void verCliente();
+bool editarCliente();
+bool eliminarCliente();
+bool registrarPaseador();
+void verPaseador();
+bool editarPaseador();
+bool eliminarPaseador();
 
 //Metodos de prueba
 void consulta1();
@@ -34,17 +47,35 @@ void consulta8();
 
 int Perro::idActual;
 int Dia::idActual;
+//int Paseo::idActual;
+int Sucursal::idActual;
+
+Persona p;
+Cliente c;
+Paseador pase;
+Perro per;
+Lista listaPerros;
+int numeroPerros = 0;
+int temp = 0;
+
+AppPerros appPerros;
+
 
 int main(int argc, char** argv) {
 	
-	Perro::idActual = 0;
-	Cliente c = Cliente("Nicolas", "Herrera", "3243433", "543345", 'd', "1234", "cedu", "Bulgaria");
-	Perro p = Perro("ptbull", 'p', "Carnehumana", "1234");
-	c.addPerro(p);
 	
-	Paseador pa = Paseador("Marce", "Rubi", "31234", "2334", 'd', "ffsdf", "dfdsf", "cali", "Colo", "dfsf22", "via");
+	//Perro::idActual = 0;
+	//Date date1 = Date(2, 10, 2015);
+	//Perro p = Perro(date1,"ptbull", 'p', "Carnehumana", "1234");
+	//c.addPerro(p);
+	//Date date2 = Date(4, 6, 2014);
+	//Paseador pa = Paseador("Marce", "Rubi", "31234", "2334", 'd', "ffsdf", "dfdsf", date2, "cali", "Colo", "dfsf22", "via");
+	//Paseo pase = Paseo(2, 12, "Caminata", "patio", "bueno");
+	//Sucursal sucu = Sucursal("Aviva", "yo");
 	
+
 	int opc;
+	
 	
 	do{
         system("cls");
@@ -232,6 +263,9 @@ void menuPersona(){
 
 void cliente(){
 	
+	//Cliente c = Cliente("Nicolas", "Herrera", "3243433", "543345", 'd', "1234", "cedu", "Bulgaria");
+	
+	//clientes=appPerros.getClientes
 	
 	
 	int opc;
@@ -248,29 +282,25 @@ void cliente(){
 	    cout<<"3. Editar"<<endl;
 	    cout<<"4. Eliminar"<<endl;
 	    cout<<"------------------------------------------"<<endl;
-	    cout<<"5. Perro"<<endl;
-	    cout<<"6. Salir"<<endl;
+	    cout<<"5. Salir"<<endl;
 	    cin>>opc;
         
         switch(opc){
             case 1:
-                registrar();
+                registrarCliente();
                 break;    
             case 2:
-                ver();
+                verCliente();
                 break;
 			case 3:
-                editar();
+                editarCliente();
                 break;    
             case 4:
-                eliminar();
-                break;
-			case 5:
-                perro();
-                break;     
+                eliminarCliente();
+                break;    
         }
                 
-    }while(opc != 6);	
+    }while(opc != 5);	
 	system("pause");
 	
 }
@@ -296,16 +326,16 @@ void paseador(){
         
         switch(opc){
             case 1:
-                registrar();
+                registrarPaseador();
                 break;    
             case 2:
-                ver();
+                verPaseador();
                 break;
 			case 3:
-                editar();
+                editarPaseador();
                 break;    
             case 4:
-                eliminar();
+                eliminarPaseador();
                 break;    
         }
                 
@@ -314,44 +344,7 @@ void paseador(){
     
 }
 
-void perro(){
-	
-	int opc;
-	
-	do{
-        system("cls");
-        cout<<"\tAppPERROS"<<endl;
-        cout<<"\tPerro"<<endl;
-	    cout<<"<========================================>"<<endl;
-	    cout<<"CRUD perro"<<endl;
-		cout<<"------------------------------------------"<<endl;
-	    cout<<"1. Registrar"<<endl;
-	    cout<<"2. Ver"<<endl;
-	    cout<<"3. Editar"<<endl;
-	    cout<<"4. Eliminar"<<endl;
-	    cout<<"------------------------------------------"<<endl;
-	    cout<<"5. Salir"<<endl;
-	    cin>>opc;
-        
-        switch(opc){
-            case 1:
-                registrar();
-                break;    
-            case 2:
-                ver();
-                break;
-			case 3:
-                editar();
-                break;    
-            case 4:
-                eliminar();
-                break;     
-        }
-                
-    }while(opc != 5);	
-	system("pause");
-	
-}
+
 
 void reporDiario(){
 	
@@ -438,61 +431,6 @@ void reporPaseador(){
     
     system("pause");
     
-}
-
-//Metodos CRUD de prueba para el menú
-bool registrar(){
-	system("cls");
-    int pos;
-    cout<<"\tAppPERROS"<<endl;
-    cout<<"\tRegistrar"<<endl;
-	cout<<"<========================================>"<<endl;
-	cout<<endl;
-	
-    
-    system("pause");
-	return true;
-}
-
-void ver(){
-	
-	system("cls");
-    int pos;
-    cout<<"\tAppPERROS"<<endl;
-    cout<<"\tVer"<<endl;
-	cout<<"<========================================>"<<endl;
-	cout<<endl;
-    
-    system("pause");
-	
-}
-
-bool editar(){
-	
-	system("cls");
-    int pos;
-    cout<<"\tAppPERROS"<<endl;
-    cout<<"\tEditar"<<endl;
-	cout<<"<========================================>"<<endl;
-	cout<<endl;
-    
-    system("pause");
-	
-	return true;
-}
-
-bool eliminar(){
-	
-	system("cls");
-    int pos;
-    cout<<"\tAppPERROS"<<endl;
-    cout<<"\tEliminar"<<endl;
-	cout<<"<========================================>"<<endl;
-	cout<<endl;
-    
-    system("pause");
-	
-	return true;
 }
 
 void consulta1(){
@@ -731,4 +669,333 @@ void consulta8(){
 	
 	system("pause");
 	
+}
+
+//--------------------------------------------------------------------------------------------------------------------------------
+//Metodos CRUD de prueba para el menú
+//CRUD Cliente
+bool registrarCliente(){
+	system("cls");
+    int pos;
+    cout<<"\tAppPERROS"<<endl;
+    cout<<"\tCliente"<<endl;
+    cout<<"\tRegistrar"<<endl;
+	cout<<"<========================================>"<<endl;
+	
+	string id, tipoId, nombre, apellido, telefono, celular, email, localidad;
+	char sexo;
+	
+	cout<<"Ingrese nombre: ";
+	cin>>nombre;
+	cout<<endl;
+	
+	cout<<"Ingrese apellido: ";
+	cin>>apellido;
+	cout<<endl;
+	
+	cout<<"Ingrese telefono: ";
+	cin>>telefono;
+	cout<<endl;
+	
+	cout<<"Ingrese celular: ";
+	cin>>celular;
+	cout<<endl;
+	
+	cout<<"Ingrese sexo: ";
+	cin>>sexo;
+	cout<<endl;
+	
+	cout<<"Ingrese id: ";
+	cin>>id;
+	cout<<endl;
+	
+	cout<<"Ingrese Tipo Id: ";
+	cin>>tipoId;
+	cout<<endl;
+	
+	cout<<"Ingrese localidad: ";
+	cin>>localidad;
+	cout<<endl;
+	
+	Cliente c;
+	
+	c.Cliente(nombre, apellido, telefono, celular, sexo, id, tipoId,localidad);
+	c.setEmail(email);
+	
+	
+	cout<<"Ingrese cantidad de perros a registrar: ";
+	cin>>temp;
+	cout<<endl;
+	
+	
+    cout<<"Registro Perro"<<endl;	
+	int opc;
+	
+	
+	for(numeroPerros = 0;numeroPerros>temp;numeroPerros++){
+        opc = perro();   
+    }
+    
+    //AGREGAR CLIENTE ARBOL
+    appPerros.getClientes().insert(c,c.setId());
+    
+    numeroPerros = 0;
+    
+    system("pause");
+    
+	return true;
+}
+
+int perro(){
+	
+    system("cls");
+    cout<<"\tAppPERROS"<<endl;
+    cout<<"\tRegistrar"<<endl;
+	cout<<"<========================================>"<<endl;
+	cout<<"Agregar perro"<<endl;
+	cout<<"------------------------------------------"<<endl;   
+    int opc;
+    
+    
+    Perro perro;
+    string idPerro, raza, tipoConcentrado,nombre;
+    Date fechaNacimiento;
+    char tamano;
+    
+    cout<<"Ingrese nombre: ";
+	cin>>nombre;
+	cout<<endl;
+	
+	cout<<"Ingrese fecha nacimienro(): ";
+	cin>>fechaNacimiento;
+	cout<<endl;
+	
+	cout<<"Ingrese raza: ";
+	cin>>raza;
+	cout<<endl;
+	
+	cout<<"Ingrese tamano: ";
+	cin>>tamano;
+	cout<<endl;
+	
+	cout<<"Ingrese tipo de concentrado: ";
+	cin>>tipoConcentrado;
+	cout<<endl;
+    
+    int idCliente;
+    perro.Perro(nombre, fechaNacimiento, raza, tamano, tipoConcentrado, c.getId());
+    perro.setIdCliente(p.getId());
+    perro.setId(idPerro);
+    
+    if(numeroPerros == 0 ){
+    	listaPerros.insertar_inicio(perro);
+	}
+	if(numeroPerros == temp){
+		listaPerros.insertar_nodo(numeroPerros,perro); 
+	}else{
+		listaPerros.insertar_nodo(numeroPerros,perro);
+	}
+	
+    
+    
+       
+    
+    cout<<"Desea ingresar mas Perros? 0:no y 1:si ";
+    cin>>opc;
+    cout<<endl;
+    return opc;
+}
+
+void verCliente(){
+	
+	system("cls");
+    int pos;
+    cout<<"\tAppPERROS"<<endl;
+    cout<<"\tVer"<<endl;
+	cout<<"<========================================>"<<endl;
+	     
+
+	//cout<<"Id: "<<c.getId()<<endl;
+	//cout<<"Nombre: "<<c.getNombre()<<endl;
+	//cout<<"Apellido: "<<c.getApellido()<<endl;
+	//cout<<"Telefono: "<<c.getTelefono()<<endl;
+	//cout<<"Celular: "<<c.getCelular()<<endl;
+	//cout<<"Sexo: "<<c.getSexo()<<endl;
+	//cout<<"Localidad: "<<c.getLocalidad()<<endl;
+	
+	
+	
+	cout<<endl;
+    
+    system("pause");
+	
+}
+
+bool editarCliente(){
+	
+	system("cls");
+    int pos;
+    cout<<"\tAppPERROS"<<endl;
+    cout<<"\tEditar"<<endl;
+	cout<<"<========================================>"<<endl;
+	
+	cout<<"Ingrese el nombre: ";
+	//string nombre;
+	//cin>>nombre;
+	//c.setNombre(nombre);
+	//cout<<c.getNombre();
+	
+	cout<<endl;
+    system("pause");
+	
+	return true;
+}
+
+bool eliminarCliente(){
+	
+	system("cls");
+    int pos;
+    cout<<"\tAppPERROS"<<endl;
+    cout<<"\tEliminar"<<endl;
+	cout<<"<========================================>"<<endl;
+	cout<<endl;
+    
+    system("pause");
+	
+	return true;
+}
+
+//CRUD Paseador
+bool registrarPaseador(){
+	system("cls");
+    int pos;
+    cout<<"\tAppPERROS"<<endl;
+    cout<<"\tPaseador"<<endl;
+    cout<<"\tRegistrar"<<endl;
+	cout<<"<========================================>"<<endl;
+	
+	
+	string id, tipoId, nombre, apellido, telefono, celular, email, ciudad, pais, direccion, barrio;
+	char sexo;
+	Date fecha;
+	
+	cout<<"Ingrese nombre: ";
+	cin>>nombre;
+	cout<<endl;
+	
+	cout<<"Ingrese apellido: ";
+	cin>>apellido;
+	cout<<endl;
+	
+	cout<<"Ingrese telefono: ";
+	cin>>telefono;
+	cout<<endl;
+	
+	cout<<"Ingrese celular: ";
+	cin>>celular;
+	cout<<endl;
+	
+	cout<<"Ingrese sexo: ";
+	cin>>sexo;
+	cout<<endl;
+	
+	cout<<"Ingrese id: ";
+	cin>>id;
+	cout<<endl;
+	
+	cout<<"Ingrese Tipo Id: ";
+	cin>>tipoId;
+	cout<<endl;
+	
+	cout<<"Ingrese fecha: ";
+	cin>>fecha;
+	cout<<endl;
+	
+	cout<<"Ingrese ciudad: ";
+	cin>>ciudad;
+	cout<<endl;
+	
+	cout<<"Ingrese pais: ";
+	cin>>pais;
+	cout<<endl;
+	
+	cout<<"Ingrese direccion: ";
+	cin>>direccion;
+	cout<<endl;
+	
+	cout<<"Ingrese barrio: ";
+	cin>>barrio;
+	cout<<endl;
+	
+	Paseador pase; 
+	
+	pase.Paseador(nombre, apellido, telefono, celular, sexo, id, tipoId, fecha,ciudad, pais, direccion, barrio);
+	
+    
+    //AGREGAR PASEADOR ARBOL
+    appPerros.getPaseadores().insert(pase,pase.setId());
+    
+	
+    
+    system("pause");
+	return true;
+}
+
+void verPaseador(){
+	
+	system("cls");
+    int pos;
+    cout<<"\tAppPERROS"<<endl;
+    cout<<"\tVer"<<endl;
+	cout<<"<========================================>"<<endl;
+	     
+
+	//cout<<"Id: "<<c.getId()<<endl;
+	//cout<<"Nombre: "<<c.getNombre()<<endl;
+	//cout<<"Apellido: "<<c.getApellido()<<endl;
+	//cout<<"Telefono: "<<c.getTelefono()<<endl;
+	//cout<<"Celular: "<<c.getCelular()<<endl;
+	//cout<<"Sexo: "<<c.getSexo()<<endl;
+	//cout<<"Localidad: "<<c.getLocalidad()<<endl;
+	
+	
+	
+	cout<<endl;
+    
+    system("pause");
+	
+}
+
+bool editarPaseador(){
+	
+	system("cls");
+    int pos;
+    cout<<"\tAppPERROS"<<endl;
+    cout<<"\tEditar"<<endl;
+	cout<<"<========================================>"<<endl;
+	
+	cout<<"Ingrese el nombre: ";
+	string nombre;
+	cin>>nombre;
+	//c.setNombre(nombre);
+	//cout<<c.getNombre();
+	
+	cout<<endl;
+    system("pause");
+	
+	return true;
+}
+
+bool eliminarPaseador(){
+	
+	system("cls");
+    int pos;
+    cout<<"\tAppPERROS"<<endl;
+    cout<<"\tEliminar"<<endl;
+	cout<<"<========================================>"<<endl;
+	cout<<endl;
+    
+    system("pause");
+	
+	return true;
 }
