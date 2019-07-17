@@ -5,7 +5,7 @@
 #ifndef _PERRO_H
 #define _PERRO_H
 
-#include <ctime>
+#include "./Utilidades/Date.h"
 #include <string>
 #include <stdio.h>
 #include <time.h>
@@ -17,7 +17,7 @@ using namespace std;
 class Perro {
 private: 
     string id;
-    tm fechaNacimiento;
+    Date fechaNacimiento;
     string raza;
     char tamano;
     string tipoConcentrado;
@@ -25,12 +25,12 @@ private:
 public:
 	
 	//tm f
-	Perro(string r, char tam, string tipoC, string iC){		
+	Perro(Date f,string r, char tam, string tipoC, string iC){		
 		ostringstream ss;		
 		idActual++;
 		ss<<idActual;
 		id = ss.str();		
-		//fechaNacimiento = f;
+		fechaNacimiento = f;
 		raza = r;	
 		tamano = tam;
 		tipoConcentrado = tipoC;
@@ -42,14 +42,14 @@ public:
 	}
 	
 	// getter
-	tm getFechaNacimiento(){return fechaNacimiento;}
+	Date getFechaNacimiento(){return fechaNacimiento;}
 	string getRaza(){return raza;}
 	char getTamano(){return tamano;}
 	string getTipoConcentrado(){return tipoConcentrado;}
 	string getIdCliente(){return idCliente;}
 	
 	// setter
-	void setFechaNacimiento(tm f){fechaNacimiento=f;}
+	void setFechaNacimiento(Date f){fechaNacimiento=f;}
 	void setRaza(string r){raza=r;}
 	void setTamano(char t){tamano=t;}
 	void setTipoConcentrado(string c){tipoConcentrado=c;}

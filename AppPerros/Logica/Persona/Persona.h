@@ -32,6 +32,8 @@ public:
 		sexo = s;
 		id = i+" "+tI;		
 	}
+	Persona(){
+	}
 	// getter
 	string getId(){return id;}
 	string getNombre(){return nombre;}
