@@ -16,7 +16,7 @@ private:
     string localidad;
     Lista <Perro> perros;
 public:
-	Cliente(string nom, string ape, string tel, string cel, char s,string i, string tI,string lo):Persona(nom, ape, tel, cel, s, i, tI){		
+	Cliente(string nom, string ape, string tel, string cel, char s,string i, string tI,string lo,string e):Persona(nom, ape, tel, cel, s, i, tI,e){		
 		
 		localidad = lo;
 		perros = Lista<Perro>();

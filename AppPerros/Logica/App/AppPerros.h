@@ -30,7 +30,7 @@ class AppPerros {
 	
 
 private: 
-    Simulacion simulacion;
+    //Simulacion simulacion;
     //Archivos  archivos;
     RBtree<Localidad,string> localidades;
     Lista <Paseo> paseos;

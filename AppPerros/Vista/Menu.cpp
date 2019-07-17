@@ -47,18 +47,18 @@ void consulta8();
 
 int Perro::idActual;
 int Dia::idActual;
-//int Paseo::idActual;
+int Paseo::idActual;
 int Sucursal::idActual;
 
 Persona p;
 Cliente c;
 Paseador pase;
 Perro per;
-Lista listaPerros;
+Lista<Perro> listaPerros;
 int numeroPerros = 0;
 int temp = 0;
 
-AppPerros appPerros;
+AppPerros appPerros = AppPerros();
 
 
 int main(int argc, char** argv) {
@@ -719,8 +719,8 @@ bool registrarCliente(){
 	
 	Cliente c;
 	
-	c.Cliente(nombre, apellido, telefono, celular, sexo, id, tipoId,localidad);
-	c.setEmail(email);
+	c = Cliente(nombre, apellido, telefono, celular, sexo, id, tipoId,localidad,email);
+	
 	
 	
 	cout<<"Ingrese cantidad de perros a registrar: ";
@@ -737,7 +737,7 @@ bool registrarCliente(){
     }
     
     //AGREGAR CLIENTE ARBOL
-    appPerros.getClientes().insert(c,c.setId());
+    appPerros.getClientes().insert(c,c.getId());
     
     numeroPerros = 0;
     
@@ -760,14 +760,21 @@ int perro(){
     Perro perro;
     string idPerro, raza, tipoConcentrado,nombre;
     Date fechaNacimiento;
+    int dia,mes,anio;
     char tamano;
     
     cout<<"Ingrese nombre: ";
 	cin>>nombre;
 	cout<<endl;
 	
-	cout<<"Ingrese fecha nacimienro(): ";
-	cin>>fechaNacimiento;
+	cout<<"Ingrese fecha nacimiento"<<endl;
+	cout<<"Dia: ";
+	cin>>dia;
+	cout<<"Mes: ";
+	cin>>mes;
+	cout<<"Anio: ";
+	cin>>anio;
+	fechaNacimiento = Date(dia,mes,anio);
 	cout<<endl;
 	
 	cout<<"Ingrese raza: ";
@@ -783,9 +790,7 @@ int perro(){
 	cout<<endl;
     
     int idCliente;
-    perro.Perro(nombre, fechaNacimiento, raza, tamano, tipoConcentrado, c.getId());
-    perro.setIdCliente(p.getId());
-    perro.setId(idPerro);
+    perro = Perro(nombre, fechaNacimiento, raza, tamano, tipoConcentrado, c.getId());    
     
     if(numeroPerros == 0 ){
     	listaPerros.insertar_inicio(perro);
@@ -887,6 +892,10 @@ bool registrarPaseador(){
 	cin>>apellido;
 	cout<<endl;
 	
+	cout<<"Ingrese email: ";
+	cin>>email;
+	cout<<endl;
+	
 	cout<<"Ingrese telefono: ";
 	cin>>telefono;
 	cout<<endl;
@@ -906,10 +915,17 @@ bool registrarPaseador(){
 	cout<<"Ingrese Tipo Id: ";
 	cin>>tipoId;
 	cout<<endl;
-	
-	cout<<"Ingrese fecha: ";
-	cin>>fecha;
+	int dia,mes,anio;
+	cout<<"Ingrese fecha"<<endl;
+	cout<<"Dia: ";
+	cin>>dia;
+	cout<<"Mes: ";
+	cin>>mes;
+	cout<<"Anio: ";
+	cin>>anio;
+	fecha = Date(dia,mes,anio);
 	cout<<endl;
+	
 	
 	cout<<"Ingrese ciudad: ";
 	cin>>ciudad;
@@ -929,11 +945,11 @@ bool registrarPaseador(){
 	
 	Paseador pase; 
 	
-	pase.Paseador(nombre, apellido, telefono, celular, sexo, id, tipoId, fecha,ciudad, pais, direccion, barrio);
+	pase = Paseador(nombre, apellido, telefono, celular, sexo, id, tipoId, fecha,ciudad, pais, direccion, barrio, email);
 	
     
     //AGREGAR PASEADOR ARBOL
-    appPerros.getPaseadores().insert(pase,pase.setId());
+    appPerros.getPaseadores().insert(pase,pase.getId());
     
 	
     

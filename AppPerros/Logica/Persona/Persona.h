@@ -24,7 +24,8 @@ private:
     char sexo;
     string email;
 public:
-	Persona(string nom, string ape, string tel, string cel, char s,string i, string tI){
+	Persona(string nom, string ape, string tel, string cel, char s,string i, string tI, string e){
+		email = e;
 		nombre = nom;
 		apellido = ape;
 		telefono = tel;

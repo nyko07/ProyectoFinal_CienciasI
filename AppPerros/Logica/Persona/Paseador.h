@@ -28,7 +28,7 @@ private:
     Lista<Dia> dias;
 public:
 	//tm fecha despus de pais
-	Paseador(string nom, string ape, string tel, string cel, char s,string i, string tI, Date f,string ciud, string pais, string dir, string bar):Persona(nom, ape, tel, cel, s, i, tI){
+	Paseador(string nom, string ape, string tel, string cel, char s,string i, string tI, Date f,string ciud, string pais, string dir, string bar, string e):Persona(nom, ape, tel, cel, s, i, tI,e){
 		
 		ciudadNacimiento = ciud;
 		paisNacimiento = pais;
