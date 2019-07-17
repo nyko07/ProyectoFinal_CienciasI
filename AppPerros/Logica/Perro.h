@@ -18,6 +18,7 @@ class Perro {
 private: 
     string id;
     Date fechaNacimiento;
+    string nombre;
     string raza;
     char tamano;
     string tipoConcentrado;
@@ -25,7 +26,8 @@ private:
 public:
 	
 	//tm f
-	Perro(Date f,string r, char tam, string tipoC, string iC){		
+	Perro(string n,Date f,string r ,char tam, string tipoC, string iC){		
+		nombre = n;
 		ostringstream ss;		
 		idActual++;
 		ss<<idActual;
@@ -44,14 +46,17 @@ public:
 	// getter
 	Date getFechaNacimiento(){return fechaNacimiento;}
 	string getRaza(){return raza;}
+	string getNombre(){return nombre;}
 	char getTamano(){return tamano;}
 	string getTipoConcentrado(){return tipoConcentrado;}
 	string getIdCliente(){return idCliente;}
+	string getId(){return id;}
 	
 	// setter
 	void setFechaNacimiento(Date f){fechaNacimiento=f;}
 	void setRaza(string r){raza=r;}
 	void setTamano(char t){tamano=t;}
+	void setNombre(string t){nombre=t;}
 	void setTipoConcentrado(string c){tipoConcentrado=c;}
 	void setIdCliente(string i){idCliente=i;}	
 

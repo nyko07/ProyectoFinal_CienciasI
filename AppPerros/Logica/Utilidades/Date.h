@@ -37,7 +37,7 @@ class Date{
 		int getAnio(){return fecha->tm_year;}
 		
 		string getDiaSemana(){return semana[fecha->tm_wday];}
-		string getMesT(){return semana[fecha->tm_mon];}		
+		string getMesT(){return meses[fecha->tm_mon];}		
 		
 	
 };
