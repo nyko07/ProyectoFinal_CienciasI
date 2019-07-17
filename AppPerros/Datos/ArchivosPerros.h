@@ -6,6 +6,7 @@
 #ifndef _ARCHIVOSPERROS_H
 #define _ARCHIVOSPERROS_H
 
+#include "../Logica/Utilidades/lista.h"
 #include "Archivos.h"
 #include <string>
 #include <stdio.h>
@@ -37,9 +38,10 @@ private:
     string tipoConcentrado;
     
 public:
-	int getTam();
-	string ** cargarDatos();
+	int getTam();	
    	void guardarDatos(string id, string idCliente, string fechaNacimiento, string raza, char tamanio, string tipoConcentrado); 
+	Lista<string> separarTextos(char separador, string texto);
+	Lista< Lista<string> > cargarDatos();
 };
 
 int ArchivosPerros::getTam(){
@@ -61,48 +63,68 @@ int ArchivosPerros::getTam(){
 /**
  * @return string**
  */
-string ** ArchivosPerros::cargarDatos() {
-	cout<<"entra";
+Lista< Lista<string> > ArchivosPerros::cargarDatos() {
+	//cout<<"entra";
     ifstream Leer;
 	Leer.open("registros/perros.txt");
 	int x = getTam();
-	string **tmp = new string*[10];
+	//string *tmp = new string[10];
 	int a = 0;
-	int b = 0;
 	
-	Leer>>id;
-	while(!Leer.eof()){
-		cout<<b;
-		tmp[a][b] = id;
-		b++;
-		cout<<b;
-
-		Leer>>idCliente;
-		tmp[a][b] = idCliente;
-		b++;
-		cout<<b;
-		Leer>>fechaNacimiento;
-		tmp[a][b] = fechaNacimiento;
-		b++;
-		cout<<b;
-		Leer>>raza;
-		tmp[a][b] = raza;
-		b++;
-		cout<<b;
-		Leer>>tamanio;
-		tmp[a][b] = tamanio;
-		b++;
-		cout<<b;
-		Leer>>tipoConcentrado;
-		tmp[a][b] = tipoConcentrado;
-		b++;
+	
+	string linea;
+	
+	
+	
+	Lista< Lista<string> > l;
+	while(getline(Leer,linea)){
+		Lista<string> lista= separarTextos(' ',linea);
+		Lista<string> aux;
+		for(int i=1;i<=lista.getTam();i++){
+			aux.insertar_nodo(aux.getTam()+1,lista.buscar(i));						
+			//cout<<tmp[a][i]<<"hola"<<endl;
+		}
+		l.insertar_nodo(l.getTam()+1,aux);		
 		
-		b = 0;
+		
+		
 		a++;
-		Leer>>id;
+		
+		
 	}
+	
 	Leer.close();
-    return tmp;
+    return l;
+}
+
+Lista<string> ArchivosPerros::separarTextos(char separador, string texto){
+	Lista<string> lista;
+	int in=0;
+	int fi=0;
+	string palabra;
+	for(int i=0;i<texto.length();i++){
+		
+		if(texto[i]==separador){
+			fi=i+1;
+			palabra = "";
+			for(int j=in;j<fi;j++){
+				palabra = palabra + texto[j];
+			}
+			
+			lista.insertar_nodo(lista.getTam()+1,palabra);
+			
+			in=fi;
+		}
+	}
+	palabra = "";
+	fi=texto.length();
+	for(int j=in;j<fi;j++){
+				palabra = palabra + texto[j];
+	}
+	
+	lista.insertar_nodo(lista.getTam()+1,palabra);
+	
+	return lista;
 }
 
 /**
