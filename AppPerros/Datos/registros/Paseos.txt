@@ -1,0 +1,9 @@
+Neruda	Pedro	28/11/2016	10	2	Acatar la orden de sentarse	Pertenece a otra sucursal
+Tomás	María	26/11/2016	1	1 	Recuperar objetos y llevárselos al amo	El perro está mal alimentado.
+Alan	Pedro	28/11/2016	10	2 	Calmarse y aprender a esperar al amo	Pertenece a otra sucursal
+Torres	Jorge	28/11/2016	10	6 	Acatar la orden de sentarse	Pertenece a otra sucursal
+Pedro	Andres	26/11/2016	14	1 	Recuperar objetos y llevárselos al amo	El perro está mal alimentado.
+Alan	Pedro	28/11/2016	1	2 	Calmarse y aprender a esperar al amo	Pertenece a otra sucursal
+Torres	Jorge	28/11/2016	13	2 	Acatar la orden de sentarse	Pertenece a otra sucursal
+Pedro	Andres	26/11/2016	1	5 	Recuperar objetos y llevárselos al amo	El perro está mal alimentado.
+Alan	Pedro	28/11/2016	16	2 	Calmarse y aprender a esperar al amo	Pertenece a otra sucursal

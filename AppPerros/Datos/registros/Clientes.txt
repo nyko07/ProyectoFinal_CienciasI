@@ -1,0 +1,10 @@
+Neruda	Pedro	3204558745	a@gmail.com	M 1024478854 cc
+Tomás	María	3204558745	a@gmail.com	F 1024478854 ti
+Alan	Pedro	3204558745	a@gmail.com	M 1024478854 cc
+Neruda	Pedro	3204558745	a@gmail.com	M 1024478854 cc
+Carlos	María	3204558745	a@gmail.com	M 1024478854 cc
+Alan	Juan	3204558745	a@gmail.com	F 1024478854 cc
+Neruda	Carlos	3204558745	a@gmail.com	F 1024478854 cc
+Tomás	María	3204558745	a@gmail.com	M 1024478854 cc
+Alan	Pedro	3204558745	a@gmail.com	F 1024478854 cc
+Carlos	María	3204558745	a@gmail.com	M 1024478854 cc

@@ -90,7 +90,7 @@ public:
 	 * @param raza
 	 */
 	Lista <Cliente> getPerrosRaza(string  localidad, string  raza);
-	    
+	
 	/**
 	 * Consultas 5
 	 * @param tm hIni
